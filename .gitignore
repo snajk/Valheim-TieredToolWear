@@ -1,0 +1,41 @@
+## .NET / Visual Studio standard ignores
+[Bb]in/
+[Oo]bj/
+*.user
+*.suo
+*.userosscache
+*.sln.docstates
+.vs/
+*.vspscc
+*.vssscc
+
+## Rider / JetBrains
+.idea/
+*.sln.iml
+
+## VS Code (optional, often included)
+.vscode/*
+!.vscode/settings.json
+!.vscode/tasks.json
+!.vscode/launch.json
+!.vscode/extensions.json
+
+## Build results
+[Dd]ebug/
+[Rr]elease/
+x64/
+x86/
+build/
+bld/
+
+## NuGet
+*.nupkg
+*.snupkg
+**/packages/*
+!**/packages/build/
+*.nuget.props
+*.nuget.targets
+
+## OS files
+.DS_Store
+Thumbs.db

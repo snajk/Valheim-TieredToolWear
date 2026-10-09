@@ -1,0 +1,41 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>netstandard2.1</TargetFramework>
+    <AssemblyName>TieredToolWear</AssemblyName>
+    <Product>TieredToolWear</Product>
+    <Version>0.1.0</Version>
+    <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
+    <LangVersion>latest</LangVersion>
+
+    <!-- Override on the command line if your game lives elsewhere, e.g.:
+         dotnet build -p:ValheimPath="C:\Program Files (x86)\Steam\steamapps\common\Valheim" -p:CopyToPlugins=true -->
+    <ValheimPath Condition="'$(ValheimPath)' == ''">$(HOME)/.local/share/Steam/steamapps/common/Valheim</ValheimPath>
+    <ManagedPath>$(ValheimPath)/valheim_Data/Managed</ManagedPath>
+
+    <!-- Opt-in: set to true (or pass -p:CopyToPlugins=true) to auto-copy the built DLL into
+         $(ValheimPath)/BepInEx/plugins/ after each build. Off by default so a plain build works
+         regardless of whether/where Valheim is installed. -->
+    <CopyToPlugins Condition="'$(CopyToPlugins)' == ''">false</CopyToPlugins>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="BepInEx.Core" Version="5.4.21" />
+    <PackageReference Include="BepInEx.AssemblyPublicizer.MSBuild" Version="0.4.2" PrivateAssets="all" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <!-- Reference game binaries -->
+    <Reference Include="$(ManagedPath)/assembly_valheim.dll" Publicize="true" />
+    <Reference Include="$(ManagedPath)/assembly_gui.dll" Publicize="true" />
+    <Reference Include="$(ManagedPath)/assembly_utils.dll" Publicize="true" />
+    <Reference Include="$(ManagedPath)/UnityEngine.dll" />
+    <Reference Include="$(ManagedPath)/UnityEngine.CoreModule.dll" />
+    <Reference Include="$(ManagedPath)/UnityEngine.PhysicsModule.dll" />
+  </ItemGroup>
+
+  <Target Name="CopyToPluginsTarget" AfterTargets="Build" Condition="'$(CopyToPlugins)' == 'true'">
+    <Copy SourceFiles="$(TargetDir)$(TargetFileName)" DestinationFolder="$(ValheimPath)/BepInEx/plugins/" />
+  </Target>
+
+</Project>
