@@ -41,8 +41,6 @@ Config file: `BepInEx/config/io.github.snajk.tieredtoolwear.cfg` (generated on f
 | General | `EnableAxeDurabilityScaling` | `true` | Enable scaling for axes (trees, logs, player-built structures). Disable to restore fully vanilla axe durability behavior. |
 | Debug | `EnableDebugLogging` | `false` | Log per-hit tool/tier/durability details to the BepInEx console. Useful for tuning the config values above. |
 
-> **Note:** This mod was previously published under the GUID `com.custom.pickaxedurability` (as "Dynamic Pickaxe Durability"). Because the GUID has changed to `io.github.snajk.tieredtoolwear`, BepInEx will **not** carry over old config values automatically — a fresh config file is generated, and any previously tuned values need to be re-entered manually.
-
 ## Building from source
 
 Requires the .NET SDK and a local Valheim install (for the game's managed assemblies).
